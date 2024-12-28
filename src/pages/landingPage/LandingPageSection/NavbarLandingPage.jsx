@@ -6,11 +6,11 @@ import Collaps from "../../../components/LandingPageComp/navbarLandingPage/Colla
 import { motion } from "framer-motion";
 function NavbarLandingPage() {
   const navigationItems = [
-    { text: "بنك الإختبارات" },
-    { text: "التوظيف" },
-    { text: "الأخبار" },
-    { text: "من نحن" },
-    { text: "الرئيسية" },
+    { text: "بنك الإختبارات", path: "/test-bank" },
+    { text: "التوظيف", path: "/recruitment" },
+    { text: "الأخبار", path: "/news" },
+    { text: "من نحن", path: "/about" },
+    { text: "الرئيسية", path: "/" },
   ];
 
   return (
@@ -27,15 +27,19 @@ function NavbarLandingPage() {
                 />
               </motion.div>
             </div>
-            <div className="text-xl font-semibold text-right text-white">
+            <Link
+              to={"/newRegister"}
+              className="text-xl  relative  group font-semibold text-right text-white"
+            >
               تسجيل ادخول
-            </div>
+              <span className="absolute  -bottom-2 left-0 h-[2px] w-0 bg-yellow-500 transition-all duration-300 group-hover:w-full"></span>
+            </Link>
           </div>
           <div className="flex flex-wrap gap-3.5 justify-center items-center self-stretch my-auto text-xl text-white  max-md:max-w-full">
             {navigationItems.map((item, index) => (
               <Link
                 key={index}
-                to={`/${item.text}`}
+                to={`${item.path}`}
                 className="relative text-right text-white group mx-2"
               >
                 {item.text}
