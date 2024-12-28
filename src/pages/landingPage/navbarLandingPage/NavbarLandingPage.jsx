@@ -17,7 +17,7 @@ function NavbarLandingPage() {
     <div>
       {" "}
       <div className=" bg-emerald-700  ">
-        <div className="flex max-w-[1300px] mx-auto  overflow-hidden max-lg:hidden flex-wrap gap-5 justify-between items-center px-32 py-5  max-xl:px-10 max-lg:px-5 max-lg:">
+        <div className="flex max-w-[1300px] mx-auto  overflow-hidden max-lg:hidden flex-wrap gap-5 justify-between items-center px-32 py-2 max-xl:px-10 max-lg:px-5 max-lg:">
           <div className="flex  gap-5 justify-center items-center self-stretch my-auto text-base text-white">
             <div className=" overflow-hidden">
               <motion.div className="flex flex-col gap-2">
