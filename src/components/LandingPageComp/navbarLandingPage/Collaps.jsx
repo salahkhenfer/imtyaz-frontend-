@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
+import { FaArrowDown } from "react-icons/fa";
 function Collaps({ perentLink, childLink }) {
   const [isOpen, setIsOpen] = useState(false);
   const toggleMenu2 = () => setIsOpen((prev) => !prev);
@@ -41,20 +42,16 @@ function Collaps({ perentLink, childLink }) {
     <div className="w-full">
       <button
         onClick={toggleMenu2}
-        className="flex justify-between items-center px-2 py-4 w-full hover:bg-sky-50 transition-colors duration-200"
+        className="flex justify-between items-center px-4 py-4 w-full transition-colors duration-200"
       >
-        <span>{perentLink}</span>
-        <motion.img
-          animate={{ rotate: isOpen ? 180 : 0 }}
+        <motion.div
+          animate={{ rotate: isOpen ? 30 : 0 }}
           transition={{ duration: 0.3 }}
-          className="w-6 h-6"
-          src={
-            isOpen
-              ? "../../../src/assets/chevoneDown.svg"
-              : "../../../src/assets/chevoneRight.svg"
-          }
-          alt="chevron icon"
-        />
+          className="w-6 h-6 "
+          alt="  "
+        >
+          <span>{perentLink}</span>
+        </motion.div>
       </button>
 
       <AnimatePresence>
@@ -64,21 +61,21 @@ function Collaps({ perentLink, childLink }) {
             initial="initial"
             animate="animate"
             exit="exit"
-            className="overflow-hidden"
+            className="overflow-hidden absolute mt-2 "
           >
-            <div className="flex flex-col">
+            <div className="flex flex-col bg-emerald-700 rounded-xl">
               {childLink.map((text, index) => (
-                <motion.a
+                <motion.div
                   key={index}
                   initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: 0 }}
                   exit={{ opacity: 0, x: -20 }}
                   transition={{ delay: index * 0.1 }}
-                  className="px-16 py-4 bg-white hover:bg-sky-50 transition-colors duration-200"
+                  className="px-16 py-4 text-white hover:bg-sky-50 transition-colors duration-200"
                   href="#"
                 >
                   {text}
-                </motion.a>
+                </motion.div>
               ))}
             </div>
           </motion.div>
