@@ -10,6 +10,7 @@ import {
 } from "react-icons/fa";
 import { FaX } from "react-icons/fa6";
 import { CiMenuBurger, CiMenuFries } from "react-icons/ci";
+import { Link } from "react-router-dom";
 
 const NavigationMobile = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -80,9 +81,8 @@ const NavigationMobile = () => {
     <header className=" lg:hidden ">
       {!isOpen && (
         <nav className="flex  justify-between overflow-hidden h-20 items-center bg-emerald-700 px-4">
-          <div></div>
           <motion.img
-            className="w-32 h-32  absolute -left-5 "
+            className="w-14 h-14 "
             src="../../../src/assets/LogoWhite.png"
             alt="logo"
             whileHover={{ scale: 1.05 }}
@@ -110,10 +110,10 @@ const NavigationMobile = () => {
             exit="exit"
             className="fixed left-0 top-0 w-full h-full bg-emerald-700 origin-top p-1"
           >
-            <div className="flex h-full flex-col gap-28">
+            <div className="flex h-full flex-col gap-5">
               <div className="flex justify-between items-center px-4 py-4">
                 <motion.img
-                  className="w-32 h-32 rounded-full"
+                  className="w-14 h-14 "
                   src="../../../src/assets/LogoWhite.png"
                   alt="logo"
                   whileHover={{ scale: 1.05 }}
@@ -127,51 +127,30 @@ const NavigationMobile = () => {
                   whileHover={{ scale: 1.1, rotate: 90 }}
                   whileTap={{ scale: 0.9 }}
                 >
-                  <FaRegWindowClose className="w-8 h-8" />
+                  <FaRegWindowClose className="w-10 h-10 text-white" />
                 </motion.div>
               </div>
               <motion.div
                 variants={containerVars}
                 initial="initial"
                 animate="open"
-                className="flex flex-col px-8 py-2 text-md text-customGray font-medium self-center w-full sm-sm:max-sm-md:text-sm sm-sm:max-sm:px-4 "
+                className="flex justify-start flex-col  px-8 py-2 text-md text-customGray font-medium self-center w-full sm-sm:max-sm-md:text-sm sm-sm:max-sm:px-4 "
               >
                 <div className=" overflow-hidden">
                   <motion.div
                     className="flex flex-col gap-2"
                     variants={mobileLinksvars}
                   >
-                    <Collaps
-                      perentLink={"Medical Specialties"}
-                      childLink={[
-                        "Pharmacien",
-                        "Médecine",
-                        "Sage-femme",
-                        "Infirmière",
-                      ]}
-                    />
-                    <Collaps
-                      perentLink={"Autres spécialités"}
-                      childLink={["Campus France", "Écoles privées"]}
-                    />
-                    <motion.a
-                      className="px-1 py-4 bg-white hover:bg-sky-50 transition-colors duration-200"
-                      href="#"
-                      whileHover={{ x: 10 }}
-                      whileTap={{ scale: 0.98 }}
-                    >
-                      Nos services
-                    </motion.a>
-                    <motion.a
-                      className="px-1 py-4 bg-white hover:bg-sky-50 transition-colors duration-200"
-                      href="#"
-                      whileHover={{ x: 10 }}
-                      whileTap={{ scale: 0.98 }}
-                    >
-                      À propos de nous
-                    </motion.a>
-
-                    <LightColoredButton text={"Sign Up and Explore"} />
+                    {navigationItems.reverse().map((item, index) => (
+                      <Link
+                        key={index}
+                        to={`/${item.text}`}
+                        className="px-1 py-4 text-white font-bold text-center text-2xl  transition-colors duration-200"
+                      >
+                        {item.text}
+                        <span className="absolute  -bottom-2 left-0 h-[2px] w-0 bg-yellow-500 transition-all duration-300 group-hover:w-full"></span>
+                      </Link>
+                    ))}
                   </motion.div>
                 </div>
               </motion.div>
