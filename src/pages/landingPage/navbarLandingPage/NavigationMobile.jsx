@@ -1,16 +1,10 @@
 import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import LightColoredButton from "../../../components/LandingPageComp/navbarLandingPage/Buttons/LightColoredButton";
-import Collaps from "../../../components/LandingPageComp/navbarLandingPage/Collaps";
-import {
-  FaBars,
-  FaClosedCaptioning,
-  FaRegWindowClose,
-  FaWindowClose,
-} from "react-icons/fa";
+import { FaRegWindowClose } from "react-icons/fa";
 import { FaX } from "react-icons/fa6";
-import { CiMenuBurger, CiMenuFries } from "react-icons/ci";
+import { CiMenuFries } from "react-icons/ci";
 import { Link } from "react-router-dom";
+import LogoWhite from "../../../assets/LogoWhite.png";
 
 const NavigationMobile = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -83,7 +77,7 @@ const NavigationMobile = () => {
         <nav className="flex  justify-between overflow-hidden h-20 items-center bg-emerald-700 px-4">
           <motion.img
             className="w-14 h-14 "
-            src="../../../src/assets/LogoWhite.png"
+            src={LogoWhite}
             alt="logo"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
@@ -114,7 +108,7 @@ const NavigationMobile = () => {
               <div className="flex justify-between items-center px-4 py-4">
                 <motion.img
                   className="w-14 h-14 "
-                  src="../../../src/assets/LogoWhite.png"
+                  src={LogoWhite}
                   alt="logo"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
