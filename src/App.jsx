@@ -1,6 +1,13 @@
 import { useEffect, useState } from "react";
 /* import { Outlet } from "react-router-dom"; */
 import Logo from "../src/assets/Logo.png";
+import heroImg1 from "../src/assets/landingPage/hero/heroImg1.png";
+import heroImg2 from "../src/assets/landingPage/hero/heroImg2.png";
+import heroImg3 from "../src/assets/landingPage/hero/heroImg3.png";
+import heroImg4 from "../src/assets/landingPage/hero/heroImg4.png";
+import starImg from "../src/assets/landingPage/StatisticsSection/starImg.png";
+import studentImg from "../src/assets/landingPage/StatisticsSection/studentImg.png";
+import teacher from "../src/assets/landingPage/StatisticsSection/teacher.png";
 
 import "./index.css";
 import { Outlet } from "react-router-dom";
@@ -11,7 +18,16 @@ function App() {
   useEffect(() => {
     const fetch_images = () => {
       return new Promise((resolve, reject) => {
-        const images = [Logo];
+        const images = [
+          Logo,
+          heroImg1,
+          heroImg2,
+          heroImg3,
+          heroImg4,
+          starImg,
+          studentImg,
+          teacher,
+        ];
 
         images.forEach((imageSrc) => {
           const img = new Image();
@@ -68,8 +84,14 @@ function App() {
 
   return (
     <div>
-      {/* <LendingPage /> */}
-      <Outlet />
+      {loading && (
+        <div className=" w-screen h-screen flex flex-col items-center justify-center">
+          <img src={Logo} alt="Logo" className=" w-32 mb-1 " />
+          <span className="loader"></span>
+        </div>
+      )}
+
+      {!loading && <Outlet />}
     </div>
   );
 }
