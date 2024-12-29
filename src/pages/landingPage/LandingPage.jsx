@@ -3,6 +3,7 @@ import HeroSection from "./heroPageSection/HeroSection";
 import CardInfoSection from "./CardsInfoPageSection/CardInfoSection";
 import StatisticsSection from "./StatisticsPageSection/StatisticsSection";
 import NavbarLandingPage from "./navbarLandingPage/NavbarLandingPage";
+import GalleryLayoutSection from "./GalleryLayoutPageSection/GalleryLayoutSection";
 
 function LandingPage() {
   return (
@@ -11,6 +12,7 @@ function LandingPage() {
       <HeroSection />
       <CardInfoSection />
       <StatisticsSection />
+      <GalleryLayoutSection />
     </div>
   );
 }
