@@ -1,6 +1,9 @@
 import { useEffect, useState } from "react";
 import { Outlet } from "react-router-dom";
 import Logo from "../src/assets/Logo.png";
+import LogoWhite from "../src/assets/LogoWhite.png";
+import "./index.css";
+
 import heroImg1 from "../src/assets/landingPage/hero/heroImg1.png";
 import heroImg2 from "../src/assets/landingPage/hero/heroImg2.png";
 import heroImg3 from "../src/assets/landingPage/hero/heroImg3.png";
@@ -19,6 +22,7 @@ function App() {
     const fetchImages = () => {
       const images = [
         Logo,
+        LogoWhite,
         heroImg1,
         heroImg2,
         heroImg3,
