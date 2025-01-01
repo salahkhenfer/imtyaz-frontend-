@@ -14,6 +14,9 @@ import teacher from "../src/assets/landingPage/StatisticsSection/teacher.png";
 
 import "./index.css";
 import MainLoading from "./MainLoading";
+import Default from "./Default";
+import NavbarLandingPage from "./pages/landingPage/navbarLandingPage/NavbarLandingPage";
+import { Footer } from "./pages/landingPage/footer/Footer";
 
 function App() {
   const [loading, setLoading] = useState(true);
@@ -72,7 +75,13 @@ function App() {
   return (
     <div>
       {loading && <MainLoading />}
-      {!loading && <Outlet />}
+      {!loading && (
+        <div>
+          <NavbarLandingPage />
+          <Outlet />
+          <Footer />
+        </div>
+      )}
     </div>
   );
 }

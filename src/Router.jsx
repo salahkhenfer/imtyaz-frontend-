@@ -22,6 +22,11 @@ const Routers = createBrowserRouter([
         element: <LandingPage />,
         errorElement: <ErrorElement />,
       },
+      {
+        path: "/newRegister",
+        element: <NewRegisterSection />,
+        errorElement: <ErrorElement />,
+      },
     ],
   },
 

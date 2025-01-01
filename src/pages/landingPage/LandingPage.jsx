@@ -13,7 +13,6 @@ import { Footer } from "./footer/Footer";
 function LandingPage() {
   return (
     <div>
-      <NavbarLandingPage />
       <HeroSection />
       <CardInfoSection />
       <StatisticsSection />
@@ -22,7 +21,6 @@ function LandingPage() {
       <BranchesSection />
       <ContactPage />
       <NewsletterSection />
-      <Footer />
     </div>
   );
 }

@@ -1,6 +1,8 @@
 import { use } from "react";
 import { useEffect } from "react";
 import { Outlet, useNavigate } from "react-router-dom";
+import { Footer } from "./pages/landingPage/footer/Footer";
+import NavbarLandingPage from "./pages/landingPage/navbarLandingPage/NavbarLandingPage";
 
 function Default() {
   // const { isAuth, userType } = useAppContext();
@@ -22,7 +24,9 @@ function Default() {
 
   return (
     <div className="min-h-screen text-red-600 flex items-center justify-center text-2xl font-bold  ">
+      <NavbarLandingPage />
       <Outlet />
+      <Footer />
     </div>
   );
 }
