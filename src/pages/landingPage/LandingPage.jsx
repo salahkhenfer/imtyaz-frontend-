@@ -4,6 +4,11 @@ import CardInfoSection from "./CardsInfoPageSection/CardInfoSection";
 import StatisticsSection from "./StatisticsPageSection/StatisticsSection";
 import NavbarLandingPage from "./navbarLandingPage/NavbarLandingPage";
 import GalleryLayoutSection from "./GalleryLayoutPageSection/GalleryLayoutSection";
+import SchoolNews from "./SchoolNewsPageSection/SchoolNewsSection";
+import BranchesSection from "./BranchesPageSection/BranchesSection";
+import ContactPage from "./ContactPageSection/ContactPage";
+import NewsletterSection from "./NewsletterPageSection/NewsletterSection";
+import { Footer } from "./footer/Footer";
 
 function LandingPage() {
   return (
@@ -13,6 +18,11 @@ function LandingPage() {
       <CardInfoSection />
       <StatisticsSection />
       <GalleryLayoutSection />
+      <SchoolNews />
+      <BranchesSection />
+      <ContactPage />
+      <NewsletterSection />
+      <Footer />
     </div>
   );
 }
