@@ -4,6 +4,7 @@ import * as Yup from "yup";
 import FormField from "./FormField";
 import SelectField from "./SelectField";
 import Button from "./Button";
+import { FaUserAlt } from "react-icons/fa";
 
 const gradeFields = [
   { name: "semester3", label: "معدل الفصل 3", placeholder: "/ 10" },
@@ -11,19 +12,7 @@ const gradeFields = [
   { name: "semester1", label: "معدل الفصل 1", placeholder: "/10" },
 ];
 
-function NewRegisterPageForm2({ setStep }) {
-  const initialValues = {
-    lastName: "",
-    firstName: "",
-    gender: "",
-    previousSchool: "",
-    semester1: "",
-    semester2: "",
-    semester3: "",
-    registrationChoice: "",
-    hasRepeatedYear: "",
-  };
-
+function NewRegisterPageForm2({ initialValues, handleBack, onSubmit }) {
   const validationSchema = Yup.object({
     lastName: Yup.string().required("لقب التلميذ مطلوب"),
     firstName: Yup.string().required("إسم التلميذ مطلوب"),
@@ -45,24 +34,12 @@ function NewRegisterPageForm2({ setStep }) {
     hasRepeatedYear: Yup.string().required("الإجابة مطلوبة"),
   });
 
-  const handleSubmit = (values, { setSubmitting }) => {
-    console.log("Form values:", values);
-    setSubmitting(false);
-    setStep(2);
-  };
-
-  const handleBack = () => {
-    // Handle back navigation
-    setStep(0);
-    console.log("Navigate back");
-  };
-
   return (
     <div>
       <Formik
         initialValues={initialValues}
         validationSchema={validationSchema}
-        onSubmit={handleSubmit}
+        onSubmit={onSubmit}
       >
         {({ errors, touched, isSubmitting }) => (
           <Form className="flex  flex-col justify-center items-center py-10 bg-white max-w-[710px] max-md:py-24">
@@ -94,7 +71,7 @@ function NewRegisterPageForm2({ setStep }) {
                   { value: "male", label: "ذكر" },
                   { value: "female", label: "أنثى" },
                 ]}
-                iconSrc="https://cdn.builder.io/api/v1/image/assets/TEMP/70599b477f399fcc477390af3384c63649171501f88088a93d8085f83a9da9a9"
+                iconSrc={"Fa"}
               />
 
               <FormField

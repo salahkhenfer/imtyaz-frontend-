@@ -2,19 +2,11 @@ import { Field, Form, Formik } from "formik";
 import React from "react";
 import * as Yup from "yup";
 
-function NewRegisterPageForm1({ setStep }) {
-  const initialValues = {
-    firstName: "",
-    lastName: "",
-    email: "",
-    phone: "",
-    address: "",
-  };
-
+function NewRegisterPageForm1({ setStep, initialValues, onSubmit }) {
   // Validation schema
   const validationSchema = Yup.object({
-    firstName: Yup.string().required("الإسم الأول مطلوب"),
-    lastName: Yup.string().required("الإسم الثاني مطلوب"),
+    firstNameParent: Yup.string().required("الإسم الأول مطلوب"),
+    lastNameParent: Yup.string().required("الإسم الثاني مطلوب"),
     email: Yup.string()
       .email("البريد الإلكتروني غير صالح")
       .required("البريد الإلكتروني مطلوب"),
@@ -23,13 +15,6 @@ function NewRegisterPageForm1({ setStep }) {
       .matches(/^[0-9\s]+$/, "رقم الهاتف غير صالح"),
     address: Yup.string().required("العنوان مطلوب"),
   });
-
-  const handleSubmit = (values, { setSubmitting }) => {
-    // Here you can send the values to your backend
-    console.log("Form values:", values);
-    setSubmitting(false);
-    setStep(1);
-  };
 
   const formFields = [
     { name: "email", label: "البريد الإلكتروني", type: "email" },
@@ -42,7 +27,7 @@ function NewRegisterPageForm1({ setStep }) {
       <Formik
         initialValues={initialValues}
         validationSchema={validationSchema}
-        onSubmit={handleSubmit}
+        onSubmit={onSubmit}
       >
         {({ values, errors, touched, handleChange, isSubmitting }) => (
           <Form className="flex flex-col justify-center py-10 bg-white max-w-[710px] max-md:py-24">
@@ -55,30 +40,30 @@ function NewRegisterPageForm1({ setStep }) {
                 <div className="flex flex-col  placeholder:text-right flex-1 shrink basis-0">
                   <Field
                     type="text"
-                    id="lastName"
-                    name="lastName"
+                    id="lastNameParent"
+                    name="lastNameParent"
                     placeholder="الإسم الثاني"
                     className={`overflow-hidden placeholder:text-right  gap-2.5 self-stretch px-3.5 py-2.5 mt-2.5 w-full text-xs whitespace-nowrap rounded-lg border border-solid ${
-                      errors.lastName && touched.lastName
+                      errors.lastNameParent && touched.lastNameParent
                         ? "border-red-500"
                         : "border-zinc-300"
                     } min-h-[35px]`}
                     aria-label="الإسم الثاني"
                   />
-                  {errors.lastName && touched.lastName && (
+                  {errors.lastNameParent && touched.lastNameParent && (
                     <div className="text-right text-red-500 text-xs mt-1">
-                      {errors.lastName}
+                      {errors.lastNameParent}
                     </div>
                   )}
                 </div>
                 <div className="flex flex-col flex-1 shrink justify-center basis-0">
                   <Field
                     type="text"
-                    id="firstName"
-                    name="firstName"
+                    id="firstNameParent"
+                    name="firstNameParent"
                     placeholder="الإسم الأول"
                     className={`overflow-hidden placeholder:text-right  gap-2.5 self-stretch px-3.5 py-2.5 mt-2.5 w-full text-xs whitespace-nowrap rounded-lg border border-solid ${
-                      errors.firstName && touched.firstName
+                      errors.firstNameParent && touched.firstNameParent
                         ? "border-red-500"
                         : "border-zinc-300"
                     } min-h-[35px]`}
