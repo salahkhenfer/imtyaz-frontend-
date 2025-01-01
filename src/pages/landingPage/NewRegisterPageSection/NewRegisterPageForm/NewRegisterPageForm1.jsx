@@ -30,8 +30,8 @@ function NewRegisterPageForm1({ setStep, initialValues, onSubmit }) {
         onSubmit={onSubmit}
       >
         {({ values, errors, touched, handleChange, isSubmitting }) => (
-          <Form className="flex flex-col justify-center py-10 bg-white max-w-[710px] max-md:py-24">
-            <div className="flex-1 shrink gap-2.5 self-stretch py-3.5 max-w-full text-3xl text-left text-black w-[353px]">
+          <Form className="flex flex-col justify-center py-10 bg-white max-w-[710px]">
+            <div className="flex-1 shrink gap-2.5 self-stretch py-3.5 max-w-full text-3xl  text-center text-black max-lg:text-2xl ">
               مرحبا بك في مجمع الإمتياز
             </div>
 
@@ -107,7 +107,7 @@ function NewRegisterPageForm1({ setStep, initialValues, onSubmit }) {
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="overflow-hidden self-stretch px-4 mt-2.5 w-full text-sm text-red-100 whitespace-nowrap bg-emerald-700 rounded-lg min-h-[36px] min-w-[64px] disabled:opacity-50"
+                className="overflow-hidden self-stretch px-4 mt-2.5 text-center w-full text-sm text-red-100 whitespace-nowrap bg-emerald-700 rounded-lg min-h-[36px] min-w-[64px] disabled:opacity-50"
               >
                 التالي
               </button>
