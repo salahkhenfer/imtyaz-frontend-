@@ -1,3 +1,28 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+* {
+  text-align: right;
+}
+/* For modern browsers */
+::-webkit-scrollbar {
+  width: 12px; /* Width of the scrollbar */
+}
+
+::-webkit-scrollbar-track {
+  background: #f2f2f2; /* Light background for the scrollbar track */
+  border-radius: 10px; /* Rounded edges */
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #357810; /* Bright yellow for the scrollbar thumb */
+  border-radius: 10px; /* Rounded edges */
+  border: 3px solid #f2f2f2; /* Adds a border for a "gap" effect */
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #357810; /* Slightly darker yellow on hover */
+}
+
+/* For Firefox */

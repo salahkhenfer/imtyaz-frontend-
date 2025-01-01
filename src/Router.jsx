@@ -6,6 +6,7 @@ import Login from "./Auth/login/Login";
 import Register from "./Auth/register/Register";
 import Default from "./Default";
 import LandingPage from "./pages/landingPage/LandingPage";
+import NewRegisterPage from "./pages/landingPage/NewRegisterPageSection/NewRegisterPage";
 
 const Routers = createBrowserRouter([
   {
@@ -24,7 +25,7 @@ const Routers = createBrowserRouter([
       },
       {
         path: "/newRegister",
-        element: <NewRegisterSection />,
+        element: <NewRegisterPage />,
         errorElement: <ErrorElement />,
       },
     ],
