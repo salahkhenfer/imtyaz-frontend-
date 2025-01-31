@@ -13,10 +13,7 @@ function Button({ variant = "primary", className, children, onClick }) {
       style={{ textAlign: "center !important" }}
       className={`${baseStyles} ${variantStyles[variant]} ${className}`}
       type={variant === "primary" ? "submit" : "button"}
-      onClick={(e) => {
-        console.log("Button clicked"); // Debug log
-        if (onClick) onClick(e); // Ensure onClick is triggered
-      }}
+      onClick={onClick}
     >
       {children}
     </button>

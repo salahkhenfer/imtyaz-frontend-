@@ -8,48 +8,78 @@ import RegistrationStep from "./stepsSection/RegistrationStep";
 function NewRegisterPage() {
   const [step, setStep] = useState(0);
   const [formData, setFormData] = useState({
-    firstNameParent: "",
-    lastNameParent: "",
+    first_name: "",
+    last_name: "",
+    first_name_ar: "",
+    last_name_ar: "",
+    gender: "M",
+    date_of_birth: "",
+    full_name_parent: "",
+    phone_number: "",
+    phone_number_2: "",
     email: "",
-    phone: "",
-    address: "",
-    firstName: "",
-    lastName: "",
-    gender: "",
-    previousSchool: "",
-    semester1: "",
-    semester2: "",
-    semester3: "",
-    registrationChoice: "",
-    hasRepeatedYear: "",
-    transportInterest: "",
-    mathAnswer: "",
+    home_address: "",
+    last_school: "",
+    semester_1: 0,
+    semester_2: 0,
+    semester_3: 0,
+    is_repeated: false,
+    needs_transportation: false,
+    level_academic: 0,
+    district: 0,
+    city: 0,
+    state: 0,
   });
 
+  const [children, setChildren] = useState([{ ...formData }]);
+
   const handleFormOneSubmit = (values, { setSubmitting }) => {
+    console.log("Form 1 data:", values);
     setFormData((prevData) => ({
       ...prevData,
-      ...values,
+      first_name: values.firstName,
+      last_name: values.lastName,
+      first_name_ar: values.firstNameAr || "",
+      last_name_ar: values.lastNameAr || "",
+      full_name_parent: `${values.firstNameParent} ${values.lastNameParent}`,
+      email: values.email,
+      phone_number: values.phone,
+      home_address: values.address,
     }));
     setStep(1);
     setSubmitting(false);
   };
 
   const handleFormTwoSubmit = (values, { setSubmitting }) => {
-    setFormData((prevData) => ({
-      ...prevData,
-      ...values,
-    }));
+    setChildren((prevChildren) => {
+      const updatedChildren = [...prevChildren];
+      updatedChildren[updatedChildren.length - 1] = {
+        ...updatedChildren[updatedChildren.length - 1],
+        ...values,
+      };
+      return updatedChildren;
+    });
     setStep(2);
     setSubmitting(false);
   };
 
   const handleFormThreeSubmit = async (values, { setSubmitting }) => {
-    setFormData((prevData) => ({
-      ...prevData,
-      ...values,
+    const finalFormData = {
+      ...formData,
+      is_repeated: values.hasRepeatedYear === "yes",
+      needs_transportation: values.transportInterest === "yes",
+      district: parseInt(values.district) || 0,
+      city: parseInt(values.city) || 0,
+      state: parseInt(values.state) || 0,
+    };
+
+    const allChildren = children.map((child) => ({
+      ...child,
+      ...finalFormData,
     }));
-    console.log("Form data:", formData);
+
+    console.log("Final form data with children:", allChildren);
+    // Here you would typically make your API call with allChildren
     setSubmitting(false);
   };
 
@@ -57,10 +87,44 @@ function NewRegisterPage() {
     setStep(step - 1);
   };
 
+  const addChild = () => {
+    setChildren((prevChildren) => [
+      ...prevChildren,
+      {
+        first_name: formData.first_name,
+        last_name: formData.last_name,
+        first_name_ar: formData.first_name_ar,
+        last_name_ar: formData.last_name_ar,
+        gender: "M",
+        date_of_birth: "",
+        full_name_parent: formData.full_name_parent,
+        phone_number: formData.phone_number,
+        phone_number_2: formData.phone_number_2,
+        email: formData.email,
+        home_address: formData.home_address,
+        last_school: "",
+        semester_1: 0,
+        semester_2: 0,
+        semester_3: 0,
+        is_repeated: false,
+        needs_transportation: false,
+        level_academic: 0,
+        district: 0,
+        city: 0,
+        state: 0,
+      },
+    ]);
+  };
+
   const formVariants = {
     hidden: { opacity: 0, x: 50 },
     visible: { opacity: 1, x: 0 },
     exit: { opacity: 0, x: -50 },
+  };
+  const removeChild = (index) => {
+    const newChildren = [...children];
+    newChildren.splice(index, 1);
+    setChildren(newChildren);
   };
 
   return (
@@ -98,9 +162,12 @@ function NewRegisterPage() {
               >
                 <NewRegisterPageForm2
                   setStep={setStep}
-                  initialValues={formData}
+                  initialValues={children[children.length - 1]}
                   onSubmit={handleFormTwoSubmit}
                   handleBack={handleBack}
+                  addChild={addChild}
+                  childrenCount={children}
+                  removeChild={removeChild}
                 />
               </motion.div>
             )}

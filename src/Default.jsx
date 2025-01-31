@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import { Outlet, useNavigate } from "react-router-dom";
 import { Footer } from "./pages/landingPage/footer/Footer";
 import NavbarLandingPage from "./pages/landingPage/navbarLandingPage/NavbarLandingPage";
+import MainLoading from "./MainLoading";
 
 function Default() {
   // const { isAuth, userType } = useAppContext();
@@ -23,10 +24,8 @@ function Default() {
   // return null; // No need to return anything from this component.
 
   return (
-    <div className="min-h-screen text-red-600 flex items-center justify-center text-2xl font-bold  ">
-      <NavbarLandingPage />
-      <Outlet />
-      <Footer />
+    <div>
+      <MainLoading />
     </div>
   );
 }

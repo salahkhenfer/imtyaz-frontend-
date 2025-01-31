@@ -30,7 +30,7 @@ function ContactForm() {
         <textarea
           id="message"
           className="overflow-hidden gap-2.5 px-3.5 pt-2.5 pb-36 mt-2.5 w-full text-right rounded-lg border border-emerald-700 border-solid min-h-[176px] min-w-[250px] max-md:pb-24 max-md:max-w-full"
-          placeholder="الرسالة ..."
+          placeholder="الرسالة "
           aria-label="الرسالة"
         />
       </div>

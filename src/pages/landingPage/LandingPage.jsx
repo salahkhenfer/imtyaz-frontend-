@@ -9,6 +9,8 @@ import BranchesSection from "./BranchesPageSection/BranchesSection";
 import ContactPage from "./ContactPageSection/ContactPage";
 import NewsletterSection from "./NewsletterPageSection/NewsletterSection";
 import { Footer } from "./footer/Footer";
+import SayAboutUs from "./SayAboutUs/SayAboutUs";
+import { FAQSection } from "./FAQ/FAQSection";
 
 function LandingPage() {
   return (
@@ -19,6 +21,9 @@ function LandingPage() {
       <GalleryLayoutSection />
       <SchoolNews />
       <BranchesSection />
+      <SayAboutUs />
+      <FAQSection />
+
       <ContactPage />
       <NewsletterSection />
     </div>

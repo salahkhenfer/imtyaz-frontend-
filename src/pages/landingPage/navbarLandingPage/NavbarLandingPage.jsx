@@ -31,7 +31,7 @@ function NavbarLandingPage() {
               to={"/newRegister"}
               className="text-xl  relative  group font-semibold text-right text-white"
             >
-              تسجيل ادخول
+              تسجيل جديد
               <span className="absolute  -bottom-2 left-0 h-[2px] w-0 bg-yellow-500 transition-all duration-300 group-hover:w-full"></span>
             </Link>
           </div>
