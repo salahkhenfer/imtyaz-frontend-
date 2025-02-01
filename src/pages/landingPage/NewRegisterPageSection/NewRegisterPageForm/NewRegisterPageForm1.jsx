@@ -15,17 +15,16 @@ function NewRegisterPageForm1({ setStep, initialValues, onSubmit }) {
   const [loading, setLoading] = useState(false);
 
   // Fetch states on component mount
+  const fetchStates = async () => {
+    setLoading(true);
+    const data = await getState();
+
+    console.log(data);
+
+    setStates(data);
+    setLoading(false);
+  };
   useEffect(() => {
-    const fetchStates = async () => {
-      setLoading(true);
-      const data = await getState();
-
-      console.log(data);
-
-      setStates(data);
-      setLoading(false);
-    };
-
     fetchStates();
   }, []);
 
@@ -71,17 +70,12 @@ function NewRegisterPageForm1({ setStep, initialValues, onSubmit }) {
     first_name_parent: initialValues.first_name_parent || "",
     last_name_parent: initialValues.last_name_parent || "",
     email: initialValues.email || "",
+
     phone_number: initialValues.phone_number || "",
     phone_number_2: initialValues.phone_number_2 || "",
     district: initialValues.district || "",
     city: initialValues.city || "",
     state: initialValues.state || "",
-  };
-
-  const handelClick = (values) => {
-    console.log("Form 1 data:", values);
-
-    // setStep(1);
   };
 
   return (
@@ -170,6 +164,7 @@ function NewRegisterPageForm1({ setStep, initialValues, onSubmit }) {
                 <Field
                   as="select"
                   name="state"
+                  onFocus={() => fetchStates()}
                   className={`overflow-hidden gap-2.5 w-full self-stretch px-3.5 py-2.5 mt-2 text-xs rounded-lg border border-solid ${
                     errors.state && touched.state
                       ? "border-red-500"
@@ -177,15 +172,21 @@ function NewRegisterPageForm1({ setStep, initialValues, onSubmit }) {
                   }`}
                   onChange={(e) => {
                     setFieldValue("state", e.target.value); // Update Formik state
+
                     fetchCities(e.target.value); // Fetch cities for the selected state
                   }}
                 >
                   <option value="">اختر الولاية</option>
-                  {states?.map((state) => (
-                    <option key={state.id} value={state.id}>
-                      {state.name}
-                    </option>
-                  ))}
+
+                  {loading ? (
+                    <option value="">جاري التحميل...</option>
+                  ) : (
+                    states?.map((state) => (
+                      <option key={state.id} value={state.id}>
+                        {state.name}
+                      </option>
+                    ))
+                  )}
                 </Field>
                 {errors.state && touched.state && (
                   <div className="text-right text-red-500 text-xs mt-1">

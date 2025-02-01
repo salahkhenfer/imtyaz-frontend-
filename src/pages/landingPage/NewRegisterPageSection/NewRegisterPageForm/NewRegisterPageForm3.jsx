@@ -5,7 +5,14 @@ import Button from "./Button";
 import QuestionInput from "./QuestionInput";
 import Swal from "sweetalert2";
 
-function NewRegisterPageForm3({ setStep, initialValues, onSubmit }) {
+function NewRegisterPageForm3({
+  setStep,
+  initialValues,
+  onSubmit,
+  Children,
+  setchildren,
+  formData,
+}) {
   const [num1] = useState(Math.floor(Math.random() * 50) + 1);
   const [num2] = useState(Math.floor(Math.random() * 50) + 1);
   const correctAnswer = num1 + num2;
@@ -65,7 +72,12 @@ function NewRegisterPageForm3({ setStep, initialValues, onSubmit }) {
             <div className="flex flex-col mt-2.5 max-w-full font-light w-[338px]">
               {/* Transportation Interest */}
               <div className="mt-2.5">
-                <label className="text-right text-sm text-stone-700">
+                <label
+                  onClick={() => {
+                    console.log(Children);
+                  }}
+                  className="text-right text-sm text-stone-700"
+                >
                   هل أنت مهتم بالنقل المدرسي ؟
                 </label>
                 <Field
