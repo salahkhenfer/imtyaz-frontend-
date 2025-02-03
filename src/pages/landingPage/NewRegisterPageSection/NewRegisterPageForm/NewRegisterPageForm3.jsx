@@ -41,12 +41,11 @@ function NewRegisterPageForm3({
 
   const handleSubmit = async (values, { setSubmitting }) => {
     try {
-      await onSubmit(values, { setSubmitting });
-      await Swal.fire({
-        icon: "success",
-        title: "تم تسجيل البيانات بنجاح",
-        confirmButtonText: "حسنا",
+      Children?.map(async (child) => {
+        child.needs_transportation = values.needs_transportation === "true";
+        child.status = false;
       });
+      await onSubmit(Children, { setSubmitting });
     } catch (error) {
       Swal.fire({
         icon: "error",

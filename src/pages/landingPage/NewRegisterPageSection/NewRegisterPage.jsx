@@ -6,10 +6,15 @@ import NewRegisterPageForm3 from "./NewRegisterPageForm/NewRegisterPageForm3";
 import RegistrationStep from "./stepsSection/RegistrationStep";
 import Swal from "sweetalert2";
 import { g } from "framer-motion/client";
+import { NewRegister } from "../../../API/landingPageApi/NewRegisterApi";
+import { useNavigate } from "react-router-dom";
 
 function NewRegisterPage() {
   const [step, setStep] = useState(0);
+  const navigate = useNavigate();
+
   const [formData, setFormData] = useState({
+    status: false,
     first_name_parent: "",
     last_name_parent: "",
     full_name_parent: "",
@@ -74,6 +79,7 @@ function NewRegisterPage() {
 
   const handleFormOneSubmit = (values, { setSubmitting }) => {
     setFormData(() => ({
+      status: false,
       first_name_parent: values.first_name_parent,
       last_name_parent: values.last_name_parent,
       full_name_parent: `${values.first_name_parent} ${values.last_name_parent}`,
@@ -95,7 +101,52 @@ function NewRegisterPage() {
   };
 
   const handleFormThreeSubmit = async (values, { setSubmitting }) => {
-    // Here you would typically make your API call with allChildren
+    try {
+      // Iterate over each child in the values array
+      values.forEach(async (child) => {
+        // Ensure all required fields are present and correctly formatted
+        const formattedChild = {
+          ...child,
+          // Ensure numeric fields are numbers
+          semester_1: Number(child.semester_1) || 0,
+          semester_2: Number(child.semester_2) || 0,
+          semester_3: Number(child.semester_3) || 0,
+          level_academic: Number(child.level_academic) || 0,
+          // Ensure optional fields are set to empty strings if missing
+          phone_number_2: child.phone_number_2 || "",
+          home_address: child.home_address || "N/A", // Provide a default value if missing
+          last_school: child.last_school || "N/A", // Provide a default value if missing
+          // Ensure date_of_birth is valid (replace with a valid date if necessary)
+          date_of_birth: child.date_of_birth || "2000-01-01", // Default date if missing
+        };
+
+        // Log the formatted child data for debugging
+        console.log("Formatted Child Data:", formattedChild);
+
+        // Make the API call with the combined formData and formatted child data
+        let response = await NewRegister({ ...formData, ...formattedChild });
+
+        // Log the API response for debugging
+        console.log("API Response:", response);
+        await Swal.fire({
+          icon: "success",
+          title: "تم التسجيل بنجاح",
+          text: "سيتم التواصل معكم قريبا",
+          confirmButtonText: "حسنا",
+        });
+
+        navigate("/Home");
+      });
+
+      // Set submitting to false after all API calls are initiated
+      setSubmitting(false);
+    } catch (error) {
+      console.error("Error submitting form:", error);
+      setSubmitting(false);
+    }
+
+    // Navigate("/Home");
+
     setSubmitting(false);
   };
 
@@ -106,7 +157,14 @@ function NewRegisterPage() {
 
   const addChild = (values, index) => {
     setChild(values);
+
     if (index > children.length) {
+      setChildren(() => {
+        const newChildren = [...children];
+        newChildren[index - 2] = values;
+        return newChildren;
+      });
+
       setChildren((prevChildren) => [
         ...prevChildren,
         {

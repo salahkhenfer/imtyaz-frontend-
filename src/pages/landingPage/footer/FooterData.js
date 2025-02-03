@@ -1,20 +1,22 @@
-export const socialLinks = [
-  { title: "فيسبوك", link: "#" },
-  { title: "تويتر", link: "#" },
-  { title: "انستغرام", link: "#" },
-  { title: "طرق أخرى", link: "#" },
-];
+import { getFooterInfo } from "../../../API/landingPageApi/NewRegisterApi";
+
+const getFooterData = async () => {
+  const response = await getFooterInfo();
+  console.log("ffff ", response);
+
+  return response;
+};
+
+const data = getFooterData();
 
 export const quickLinks = [
-  { title: "تسجيل الدخول", link: "#" },
-  { title: "من نحن", link: "#" },
-  { title: "التوظيف", link: "#" },
-  { title: "النوادي", link: "#" },
+  { title: "تسجيل الدخول", link: "" },
+  { title: "من نحن", link: "" },
+  { title: "التوظيف", link: "" },
 ];
 
 export const services = [
-  { title: "أقسام الدعم المدرسي", link: "#" },
-  { title: "التكوين في اللغات", link: "#" },
-  { title: "E-planet", link: "#" },
-  { title: "ما قبل التمدرس", link: "#" },
+  { title: "أقسام الدعم المدرسي", link: "" },
+  { title: "E-planet", link: "" },
+  { title: "ما قبل التمدرس", link: "" },
 ];

@@ -9,7 +9,9 @@ export function FooterLinkSection({ title, links }) {
           <a
             href={link.link}
             key={index}
-            className={`${index > 0 ? "mt-3.5" : ""}`}
+            className={`${
+              index > 0 ? "mt-3.5" : ""
+            }  text-center cursor-pointer`}
             tabIndex="0"
           >
             {link.title}

@@ -106,7 +106,7 @@ function NewRegisterPageForm2({
           return newChildren;
         });
 
-        const child = childrenCount[index];
+        let child = childrenCount[index];
         setCurrentChild(index);
 
         resetForm({
@@ -116,6 +116,7 @@ function NewRegisterPageForm2({
             first_name_ar: child.first_name_ar,
             last_name_ar: child.last_name_ar,
             gender: child.gender,
+            date_of_birth: child.date_of_birth,
             last_school: child.last_school,
             semester_1: child.semester_1,
             semester_2: child.semester_2,
@@ -124,6 +125,7 @@ function NewRegisterPageForm2({
             is_repeated: child.is_repeated,
           },
         });
+        child = null;
       } else {
         return;
       }
@@ -169,19 +171,18 @@ function NewRegisterPageForm2({
           setCurrentChild(newIndex);
 
           resetForm({
-            values: {
-              first_name: child.first_name,
-              last_name: child.last_name,
-              first_name_ar: child.first_name_ar,
-              last_name_ar: child.last_name_ar,
-              gender: child.gender,
-              last_school: child.last_school,
-              semester_1: child.semester_1,
-              semester_2: child.semester_2,
-              semester_3: child.semester_3,
-              level_academic: child.level_academic,
-              is_repeated: child.is_repeated,
-            },
+            first_name: child.first_name,
+            last_name: child.last_name,
+            first_name_ar: child.first_name_ar,
+            last_name_ar: child.last_name_ar,
+            gender: child.gender,
+            date_of_birth: child.date_of_birth,
+            last_school: child.last_school,
+            semester_1: child.semester_1,
+            semester_2: child.semester_2,
+            semester_3: child.semester_3,
+            level_academic: child.level_academic,
+            is_repeated: child.is_repeated,
           });
         }
       }
@@ -200,20 +201,18 @@ function NewRegisterPageForm2({
       if (result.isConfirmed) {
         addChild(values, childrenCount.length + 1);
         resetForm({
-          values: {
-            first_name: "",
-            last_name: "",
-            first_name_ar: "",
-            last_name_ar: "",
-            gender: "",
-            last_school: "",
-            date_of_birth: "",
-            semester_1: "",
-            semester_2: "",
-            semester_3: "",
-            level_academic: "",
-            is_repeated: false,
-          },
+          first_name: "",
+          last_name: "",
+          first_name_ar: "",
+          last_name_ar: "",
+          gender: "",
+          last_school: "",
+          date_of_birth: "",
+          semester_1: 0,
+          semester_2: 0,
+          semester_3: 0,
+          level_academic: 1,
+          is_repeated: false,
         });
       } else {
         addChild(values, childrenCount.length);

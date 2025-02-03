@@ -1,8 +1,34 @@
 import * as React from "react";
 import { FooterLinkSection } from "./FooterLinkSection";
-import { socialLinks, quickLinks, services } from "./FooterData";
+import { quickLinks, services } from "./FooterData";
 import LogoFooter from "../../../assets/LogoFooter.png";
+import { getFooterInfo } from "../../../API/landingPageApi/NewRegisterApi";
+import { use } from "react";
 export function Footer() {
+  const [footerData, setFooterData] = React.useState({});
+  const [socialLinks, setSocialLinks] = React.useState([
+    { title: "فيسبوك", link: "" },
+    { title: "تويتر", link: "" },
+    { title: "انستغرام", link: "" },
+    { title: "لينكدان", link: "" },
+  ]);
+  const getFooterData = async () => {
+    const response = await getFooterInfo();
+    setFooterData(response);
+    setSocialLinks([
+      { title: "فيسبوك", link: response.facebook },
+      { title: "تويتر", link: response.twitter },
+      { title: "انستغرام", link: response.instagram },
+      { title: "لينكدان", link: response.linkedin },
+    ]);
+
+    console.log(response);
+  };
+
+  React.useEffect(() => {
+    getFooterData();
+  }, []);
+
   return (
     <div className="flex overflow-hidden flex-col pt-7 bg-emerald-700">
       <div className="flex flex-col items-center w-full max-md:max-w-full">
@@ -21,21 +47,21 @@ export function Footer() {
               />
             </div>
             <div className="mt-5 text-sm text-right text-zinc-300">
-              جميع الحقوق محفوظة 2024 ©
+              {footerData?.copyright_text_ar}
             </div>
             <a
               href="#"
               className="mt-5 text-sm text-right text-zinc-300"
               tabIndex="0"
             >
-              شروط الخدمة
+              {footerData?.phone}
             </a>
             <a
               href="#"
               className="mt-5 text-sm text-right text-zinc-300"
               tabIndex="0"
             >
-              سياسة الخصوصية
+              {footerData?.email}
             </a>
           </div>
         </div>
