@@ -107,7 +107,7 @@ function ContactForm() {
           <button
             type="submit"
             disabled={isSubmitting}
-            className="overflow-hidden mx-auto text-center self-end px-4 mt-2.5 text-sm text-red-100 whitespace-nowrap bg-emerald-700 rounded-lg min-h-[36px] min-w-[64px] disabled:opacity-50"
+            className="overflow-hidden my-4 mx-auto text-center self-end px-4 mt-2.5 text-sm text-red-100 whitespace-nowrap bg-emerald-700 rounded-lg min-h-[36px] min-w-[64px] disabled:opacity-50"
           >
             إرسال
           </button>
